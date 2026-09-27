@@ -4,7 +4,8 @@
     env: docker
     plan: free
     region: singapore
-    rootDir: Laravel
+    dockerContext: Laravel
+    dockerfilePath: Laravel/Dockerfile
     envVars:
       - key: APP_ENV
         value: production
