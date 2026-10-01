@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>เอกสารสรุปประกอบการพูดนำเสนอ: ระบบแจ้งซ่อม IT (Laravel Helpdesk System)</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@300;400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        @page {
+            size: A4 portrait;
+            margin: 10mm 12mm 10mm 12mm;
+            @bottom-right {
+                content: counter(page);
+            }
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Prompt', 'Sarabun', 'Leelawadee UI', Tahoma, sans-serif;
+            font-size: 11.5px;
+            line-height: 1.5;
+            color: #1e293b;
+            background: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+
+        .page-break {
+            page-break-after: always;
+            break-after: page;
+        }
+
+        /* Header / Cover Style */
+        .doc-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 60%, #4338ca 100%);
+            color: white;
+            padding: 18px 22px;
+            border-radius: 13px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.15);
+        }
+
+        .badge-tag {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            color: #e0e7ff;
+            font-size: 10px;
+            font-weight: 600;
+            padding: 2px 9px;
+            border-radius: 9999px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        h1.doc-title {
+            font-size: 21px;
+            font-weight: 700;
+            margin: 0 0 4px 0;
+            letter-spacing: -0.5px;
+            line-height: 1.25;
+        }
+
+        .doc-subtitle {
+            font-size: 11.5px;
+            color: #bfdbfe;
+            margin: 0 0 9px 0;
+            font-weight: 400;
+        }
+
+        .header-meta {
+            display: flex;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            padding-top: 8px;
+            font-size: 10px;
+            color: #dbeafe;
+        }
+
+        /* Section Headings */
+        h2.section-title {
+            font-size: 14px;
+            font-weight: 700;
+            color: #0f172a;
+            border-left: 4px solid #2563eb;
+            padding-left: 8px;
+            margin: 13px 0 8px 0;
+            display: flex;
+            align-items: center;
+        }
+
+        h3.subsection-title {
+            font-size: 12.5px;
+            font-weight: 600;
+            color: #1e3a8a;
+            margin: 9px 0 5px 0;
+        }
+
+        /* Cards */
+        .card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 10px 13px;
+            margin-bottom: 9px;
+        }
+
+        .card-highlight {
+            background: #f8fafc;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .feature-card {
+            background: #ffffff;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            padding: 10px 13px;
+            margin-bottom: 9px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        .feature-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 4px;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .feature-badge {
+            font-size: 9.5px;
+            font-weight: 600;
+            padding: 2px 7px;
+            border-radius: 6px;
+        }
+
+        .badge-blue { background: #dbeafe; color: #1e40af; }
+        .badge-indigo { background: #e0e7ff; color: #3730a3; }
+        .badge-emerald { background: #d1fae5; color: #065f46; }
+        .badge-amber { background: #fef3c7; color: #92400e; }
+        .badge-mysql { background: #ffedd5; color: #c2410c; border: 1px solid #fdba74; }
+
+        /* Tables */
+        table.custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 10px;
+            margin: 6px 0 10px 0;
+        }
+
+        table.custom-table th {
+            background: #f1f5f9;
+            color: #334155;
+            font-weight: 600;
+            text-align: left;
+            padding: 5px 7px;
+            border: 1px solid #cbd5e1;
+        }
+
+        table.custom-table td {
+            padding: 4px 7px;
+            border: 1px solid #e2e8f0;
+            vertical-align: top;
+        }
+
+        table.custom-table tr:nth-child(even) td {
+            background: #f8fafc;
+        }
+
+        /* Code snippets */
+        code, .code-text {
+            font-family: 'Fira Code', Consolas, monospace;
+            font-size: 9.5px;
+            background: #f1f5f9;
+            padding: 1px 4px;
+            border-radius: 4px;
+            color: #0f172a;
+            border: 1px solid #e2e8f0;
+        }
+
+        .script-box {
+            background: #fefce8;
+            border: 1px solid #fef08a;
+            border-left: 4px solid #eab308;
+            border-radius: 9px;
+            padding: 8px 11px;
+            margin: 7px 0;
+            font-size: 11px;
+        }
+
+        .qa-box {
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+            border-left: 4px solid #22c55e;
+            border-radius: 9px;
+            padding: 7px 10px;
+            margin-bottom: 7px;
+            font-size: 10.5px;
+        }
+
+        .qa-question {
+            font-weight: 700;
+            color: #14532d;
+            margin-bottom: 2px;
+        }
+
+        .qa-answer {
+            color: #166534;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 9px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 6px;
+            font-size: 10.5px;
+        }
+
+        .step-num {
+            background: #2563eb;
+            color: white;
+            font-weight: bold;
+            font-size: 9.5px;
+            width: 17px;
+            height: 17px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 7px;
+            flex-shrink: 0;
+        }
+
+        .lifecycle-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 7px;
+            margin-bottom: 5px;
+        }
+
+        .lifecycle-title {
+            font-weight: 700;
+            color: #1e3a8a;
+            font-size: 10.5px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 2px;
+        }
+
+        .lifecycle-desc {
+            font-size: 10px;
+            color: #475569;
+        }
+
+        .role-card-user {
+            border: 1.5px solid #93c5fd;
+            background: #f0f7ff;
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .role-card-staff {
+            border: 1.5px solid #c7d2fe;
+            background: #f5f3ff;
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+
+        .role-card-bridge {
+            border: 1.5px solid #86efac;
+            background: #f0fdf4;
+            border-radius: 10px;
+            padding: 10px 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================= PAGE 1 ================= -->
+    <div class="doc-header">
+        <span class="badge-tag">SPEAKER GUIDE & SYSTEM ARCHITECTURE</span>
+        <h1 class="doc-title">สรุปโครงงานระบบแจ้งซ่อม IT (IT Helpdesk System)</h1>
+        <p class="doc-subtitle">เอกสารประกอบการพูดนำเสนอหน้าห้อง: Laravel Framework, ฐานข้อมูล MySQL, 3 ฟีเจอร์ใหม่ & แผนผังบทบาท</p>
+        <div class="header-meta">
+            <span><strong>สถาปัตยกรรม:</strong> PHP Laravel Framework (MVC Pattern)</span>
+            <span><strong>ฐานข้อมูล:</strong> MySQL 5.7 / 8.0+ (InnoDB utf8mb4)</span>
+            <span><strong>วันที่นำเสนอ:</strong> ตุลาคม 2026</span>
+        </div>
+    </div>
+
+    <h2 class="section-title">📌 1. ภาพรวมระบบเดิม และที่มาของการพัฒนาต่อยอด</h2>
+    <div class="card card-highlight">
+        <p><strong>ระบบเดิม:</strong> เป็นระบบรับเรื่องแจ้งซ่อม IT พื้นฐาน แต่พบข้อจำกัดสำคัญในชีวิตจริง 3 ประการ: <em>ไม่มีรูปภาพประกอบ</em> (ช่างต้องเดาอาการ), <em>ไม่มีการจัดลำดับความเร่งด่วน</em> (เคสวิกฤติตกหล่น), และ <em>ไม่มีการบันทึกข้อความช่าง</em> (ผู้ใช้ไม่ทราบความคืบหน้า)</p>
+    </div>
+
+    <h2 class="section-title">⭐ 2. สรุป 3 ฟีเจอร์สำคัญที่พัฒนาเพิ่มเติม (Core Enhancements)</h2>
+
+    <div class="feature-card">
+        <div class="feature-header">
+            <strong style="font-size: 12.5px; color: #1e3a8a;">ฟีเจอร์ที่ 1: ระบบแนบรูปถ่ายหลักฐานปัญหา (Issue Attachment & Photo Upload)</strong>
+            <span class="feature-badge badge-blue">Visual Evidence</span>
+        </div>
+        <p>ผู้ใช้สามารถแนบรูปถ่ายหน้าจอ Error หรืออุปกรณ์ชำรุด (ไม่เกิน 2MB) โดยรูปภาพจะถูกจัดเก็บลง Storage ของ Laravel และแสดงทั้งในหน้า Dashboard ช่าง และหน้าติดตามสถานะของผู้ใช้</p>
+        <p style="margin:0; font-size:10px; color:#475569;"><strong>จุดแก้โค้ด:</strong> ตาราง tickets เพิ่มฟิลด์ <code>image_path</code>, <code>TicketController.php</code> ใช้คำสั่ง <code>store('tickets', 'public')</code></p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-header">
+            <strong style="font-size: 12.5px; color: #3730a3;">ฟีเจอร์ที่ 2: ระดับความเร่งด่วน & หมวดหมู่อุปกรณ์ พร้อมระบบคัดกรองงาน (Priority, Category & Filter)</strong>
+            <span class="feature-badge badge-indigo">SLA & Prioritization</span>
+        </div>
+        <p>ระบุความด่วน 4 ระดับ (ด่วนที่สุด, เร่งด่วน, ปานกลาง, ต่ำ) และแบ่ง 5 หมวดหมู่ พร้อมแผง Filter และจัดเรียงให้เคส Urgent ลอยขึ้นมาแสดงบนสุดอัตโนมัติ ช่วยช่างจัดคิวงานตามหลัก SLA</p>
+        <p style="margin:0; font-size:10px; color:#475569;"><strong>จุดแก้โค้ด:</strong> ตาราง tickets เพิ่ม <code>priority</code>, <code>category</code>, <code>AdminTicketController.php</code> กรองด้วย Eloquent <code>$query->where(...)</code></p>
+    </div>
+
+    <div class="feature-card">
+        <div class="feature-header">
+            <strong style="font-size: 12.5px; color: #065f46;">ฟีเจอร์ที่ 3: ระบบบันทึกข้อความช่าง & ไทม์ไลน์ติดตามผล (Technician Action Notes & Status Timeline)</strong>
+            <span class="feature-badge badge-emerald">Transparency & History</span>
+        </div>
+        <p>เพิ่มช่องบันทึกการซ่อม (Admin Notes) ให้ช่างพิมพ์สรุปสิ่งที่ทำ และประทับเวลาปิดงาน (resolved_at) อัตโนมัติ โดยส่งไปแสดงในหน้าติดตามสถานะของผู้ใช้ (Track) แบบ Real-time พร้อมแถบ Progress Bar</p>
+        <p style="margin:0; font-size:10px; color:#475569;"><strong>จุดแก้โค้ด:</strong> ตาราง tickets เพิ่ม <code>admin_notes</code>, <code>resolved_at</code>, <code>track.blade.php</code> แสดง Progress Timeline และกล่องข้อความช่าง</p>
+    </div>
+
+    <div class="page-break"></div>
+    <!-- ================= PAGE 2 ================= -->
+
+    <h2 class="section-title">👥 3. การจำแนกบทบาทในระบบ: ส่วนผู้ใช้ vs ส่วนเจ้าหน้าที่ vs จุดเชื่อมต่อ</h2>
+
+    <div class="role-card-user" style="margin-bottom: 8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+            <strong style="font-size: 12px; color: #1e40af;">👤 1. ส่วนของผู้ใช้งานทั่วไป (User / Public Area)</strong>
+            <span class="feature-badge badge-blue">ไม่ต้องล็อกอิน (Zero-Friction)</span>
+        </div>
+        <div class="grid-2" style="font-size: 10px;">
+            <div>
+                <strong>สิ่งที่ผู้ใช้ทำได้:</strong>
+                <ul style="margin: 2px 0 0 12px; padding: 0;">
+                    <li>กรอกแบบฟอร์มแจ้งซ่อม (ชื่อ, แผนก, รายละเอียด)</li>
+                    <li>ระบุระดับความด่วน และเลือกหมวดหมู่อุปกรณ์</li>
+                    <li>แนบรูปถ่ายหน้าจอ error หรืออุปกรณ์ที่ชำรุด</li>
+                    <li>ได้รับรหัสเฉพาะ <code>Ticket Number</code> หลังส่งคำขอ</li>
+                </ul>
+            </div>
+            <div>
+                <strong>ไฟล์และโค้ดที่รับผิดชอบ:</strong>
+                <ul style="margin: 2px 0 0 12px; padding: 0;">
+                    <li><code>TicketController.php</code> (index, create, store, success)</li>
+                    <li><code>resources/views/tickets/index.blade.php</code> (หน้าแรก)</li>
+                    <li><code>resources/views/tickets/create.blade.php</code> (ฟอร์มแจ้ง)</li>
+                    <li><code>resources/views/tickets/success.blade.php</code> (หน้ารับรหัส)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="role-card-staff" style="margin-bottom: 8px;">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+            <strong style="font-size: 12px; color: #3730a3;">🛠️ 2. ส่วนของเจ้าหน้าที่ IT / ผู้ดูแลระบบ (Admin & Staff Area)</strong>
+            <span class="feature-badge badge-indigo">ระบบล็อกอิน (Auth Middleware)</span>
+        </div>
+        <div class="grid-2" style="font-size: 10px;">
+            <div>
+                <strong>สิ่งที่เจ้าหน้าที่ทำได้:</strong>
+                <ul style="margin: 2px 0 0 12px; padding: 0;">
+                    <li>ดูแดชบอร์ดภาพรวม และตัวนับเคสค้างด่วนที่สุด</li>
+                    <li>ใช้ Filter คัดแยกงานตามความด่วน / หมวดหมู่</li>
+                    <li>เปิดดูรูปภาพหลักฐานเพื่อเตรียมอะไหล่ก่อนไปซ่อม</li>
+                    <li>มอบหมายช่างผู้รับผิดชอบ และเปลี่ยนสถานะงาน</li>
+                    <li>พิมพ์บันทึกวิธีแก้ปัญหา (Admin Notes) และปิดงาน</li>
+                </ul>
+            </div>
+            <div>
+                <strong>ไฟล์และโค้ดที่รับผิดชอบ:</strong>
+                <ul style="margin: 2px 0 0 12px; padding: 0;">
+                    <li><code>AuthController.php</code> (login, logout)</li>
+                    <li><code>AdminTicketController.php</code> (dashboard, show, update)</li>
+                    <li><code>resources/views/auth/login.blade.php</code> (หน้าล็อกอิน)</li>
+                    <li><code>resources/views/admin/dashboard.blade.php</code> (แดชบอร์ด)</li>
+                    <li><code>resources/views/admin/show.blade.php</code> (ตรวจเคส/บันทึก)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="role-card-bridge">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom: 4px;">
+            <strong style="font-size: 12px; color: #065f46;">🤝 3. ส่วนที่นำทั้ง 2 ส่วนมาร่วมเข้าด้วยกัน (Shared Integration & Bridge)</strong>
+            <span class="feature-badge badge-emerald">จุดเชื่อมต่อข้อมูลระหว่างผู้ใช้กับช่าง</span>
+        </div>
+        <table class="custom-table" style="margin: 0; background: white;">
+            <thead>
+                <tr>
+                    <th style="width: 25%;">จุดเชื่อมต่อ</th>
+                    <th style="width: 25%;">กลไกในระบบ</th>
+                    <th style="width: 50%;">บทบาทการทำงานร่วมกัน</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1. รหัสติดตามตั๋ว (Ticket ID)</strong></td>
+                    <td><code>ticket_number</code> (เช่น TK-202610-A1B2)</td>
+                    <td>เป็น "กุญแจเชื่อมต่อ" ผู้ใช้ถือไว้ค้นหา ช่างใช้เป็นรหัสอ้างอิงในการลงบันทึกงาน</td>
+                </tr>
+                <tr>
+                    <td><strong>2. หน้าติดตามสถานะ (Track System)</strong></td>
+                    <td><code>tickets/track.blade.php</code> & <code>TicketController@track</code></td>
+                    <td>ผู้ใช้กรอกรหัสตั๋ว แล้วหน้าจอจะดึงข้อความที่ช่างบันทึกไว้ในหลังบ้าน (Admin Notes) และ Progress Bar มาแสดงให้ผู้ใช้เห็นทันที</td>
+                </tr>
+                <tr>
+                    <td><strong>3. ฐานข้อมูลและโมเดลร่วม</strong></td>
+                    <td>ตาราง <code>tickets</code> & โมเดล <code>Ticket.php</code></td>
+                    <td>เป็นตัวกลางเก็บข้อมูลฝั่งผู้ใช้ (ปัญหา, รูปภาพ) และข้อมูลฝั่งช่าง (สถานะ, วิธีแก้ปัญหา, ช่างผู้รับผิดชอบ, เวลาปิดงาน)</td>
+                </tr>
+                <tr>
+                    <td><strong>4. เมนูบาร์หลัก (Layout Header)</strong></td>
+                    <td><code>layouts/app.blade.php</code></td>
+                    <td>เมนูบาร์ร่วม ตรวจสิทธิ์ด้วย <code>@auth</code> ถ้าเป็นช่างจะเห็นปุ่มเข้าหลังบ้าน ถ้าเป็นคนทั่วไปจะเห็นปุ่มแจ้งซ่อม</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="page-break"></div>
+    <!-- ================= PAGE 3 ================= -->
+
+    <h2 class="section-title">🗄️ 4. โครงสร้างฐานข้อมูล MySQL (MySQL Database & Architecture)</h2>
+    <div class="card card-highlight">
+        <p><strong>การเชื่อมต่อ MySQL:</strong> Laravel เชื่อมต่อกับ MySQL ผ่านไฟล์ <code>.env</code> โดยใช้พารามิเตอร์ <code>DB_CONNECTION=mysql</code>, <code>DB_HOST=127.0.0.1</code>, <code>DB_PORT=3306</code>, <code>DB_DATABASE=it_helpdesk</code> ซึ่งรองรับทั้งบน XAMPP, Laragon, และ MySQL Server ทั่วไป พร้อมไฟล์ SQL สำเร็จรูป <code>database/it_helpdesk.sql</code> สำหรับ Import เข้าใช้งานได้ทันที</p>
+    </div>
+
+    <h3 class="subsection-title">📊 4.1 แผนผังตารางในฐานข้อมูล MySQL (Data Dictionary)</h3>
+
+    <!-- Users Table -->
+    <table class="custom-table">
+        <thead>
+            <tr style="background:#e0e7ff;">
+                <th colspan="4" style="color:#1e3a8a; font-size:10.5px;">📋 ตาราง <code>users</code> (จัดเก็บข้อมูลเจ้าหน้าที่ IT และผู้ดูแลระบบ)</th>
+            </tr>
+            <tr>
+                <th style="width: 25%;">ชื่อฟิลด์ (Field)</th>
+                <th style="width: 20%;">ชนิดข้อมูล (Type)</th>
+                <th style="width: 15%;">คีย์ (Key)</th>
+                <th style="width: 40%;">คำอธิบาย (Description)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>id</code></td>
+                <td>BIGINT UNSIGNED</td>
+                <td><strong>PK (AI)</strong></td>
+                <td>รหัสประจำตัวผู้ใช้งาน (Primary Key)</td>
+            </tr>
+            <tr>
+                <td><code>name</code></td>
+                <td>VARCHAR(255)</td>
+                <td>-</td>
+                <td>ชื่อ-นามสกุลของเจ้าหน้าที่ IT</td>
+            </tr>
+            <tr>
+                <td><code>email</code></td>
+                <td>VARCHAR(255)</td>
+                <td><strong>UNIQUE</strong></td>
+                <td>อีเมลสำหรับเข้าสู่ระบบ</td>
+            </tr>
+            <tr>
+                <td><code>password</code></td>
+                <td>VARCHAR(255)</td>
+                <td>-</td>
+                <td>รหัสผ่านที่เข้ารหัสด้วย Bcrypt Hash ปลอดภัย 100%</td>
+            </tr>
+            <tr>
+                <td><code>role</code></td>
+                <td>VARCHAR(50)</td>
+                <td>-</td>
+                <td>ระดับสิทธิ์: <code>admin</code>, <code>staff</code> (default: 'staff')</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Tickets Table -->
+    <table class="custom-table">
+        <thead>
+            <tr style="background:#dbeafe;">
+                <th colspan="4" style="color:#1e40af; font-size:10.5px;">🎫 ตาราง <code>tickets</code> (จัดเก็บข้อมูลใบแจ้งซ่อม IT พร้อมรองรับ 3 ฟีเจอร์ใหม่)</th>
+            </tr>
+            <tr>
+                <th style="width: 25%;">ชื่อฟิลด์ (Field)</th>
+                <th style="width: 20%;">ชนิดข้อมูล (Type)</th>
+                <th style="width: 15%;">คีย์ (Key)</th>
+                <th style="width: 40%;">คำอธิบาย (Description)</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td><code>id</code></td>
+                <td>BIGINT UNSIGNED</td>
+                <td><strong>PK (AI)</strong></td>
+                <td>รหัสไอดีรายการแจ้งซ่อม (Primary Key)</td>
+            </tr>
+            <tr>
+                <td><code>ticket_number</code></td>
+                <td>VARCHAR(50)</td>
+                <td><strong>UNIQUE, IDX</strong></td>
+                <td>รหัสติดตามงานเฉพาะตัว เช่น <code>TK-202610-0001</code></td>
+            </tr>
+            <tr>
+                <td><code>title</code></td>
+                <td>VARCHAR(255)</td>
+                <td>-</td>
+                <td>หัวข้อปัญหาที่ต้องการแจ้งซ่อม</td>
+            </tr>
+            <tr>
+                <td><code>description</code></td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td>รายละเอียดอาการเสียหรือข้อความ Error ที่พบ</td>
+            </tr>
+            <tr>
+                <td><code>requester_name</code></td>
+                <td>VARCHAR(150)</td>
+                <td>-</td>
+                <td>ชื่อผู้แจ้งซ่อม (ฝั่งผู้ใช้ทั่วไป)</td>
+            </tr>
+            <tr>
+                <td><code>requester_email</code></td>
+                <td>VARCHAR(150)</td>
+                <td>-</td>
+                <td>อีเมลสำหรับแจ้งเตือนและค้นหา</td>
+            </tr>
+            <tr>
+                <td><code>status</code></td>
+                <td>ENUM(...)</td>
+                <td><strong>INDEX</strong></td>
+                <td>สถานะ: <code>pending</code>, <code>in_progress</code>, <code>resolved</code>, <code>cancelled</code></td>
+            </tr>
+            <tr style="background:#eff6ff;">
+                <td><code>image_path</code> ⭐</td>
+                <td>VARCHAR(255)</td>
+                <td>-</td>
+                <td><strong>ฟีเจอร์ 1:</strong> ที่อยู่ไฟล์ภาพหลักฐานใน Storage</td>
+            </tr>
+            <tr style="background:#eff6ff;">
+                <td><code>category</code> ⭐</td>
+                <td>ENUM(...)</td>
+                <td><strong>INDEX</strong></td>
+                <td><strong>ฟีเจอร์ 2:</strong> <code>hardware</code>, <code>software</code>, <code>network</code>, <code>printer</code>, <code>other</code></td>
+            </tr>
+            <tr style="background:#eff6ff;">
+                <td><code>priority</code> ⭐</td>
+                <td>ENUM(...)</td>
+                <td><strong>INDEX</strong></td>
+                <td><strong>ฟีเจอร์ 2:</strong> <code>urgent</code>, <code>high</code>, <code>medium</code>, <code>low</code></td>
+            </tr>
+            <tr style="background:#f0fdf4;">
+                <td><code>admin_notes</code> ⭐</td>
+                <td>TEXT</td>
+                <td>-</td>
+                <td><strong>ฟีเจอร์ 3:</strong> บันทึกวิธีแก้ปัญหาหรือคำแนะนำจากช่าง IT</td>
+            </tr>
+            <tr>
+                <td><code>assigned_to</code></td>
+                <td>BIGINT UNSIGNED</td>
+                <td><strong>FK</strong></td>
+                <td>Foreign Key เชื่อมกับ <code>users.id</code> (ช่างผู้รับผิดชอบงาน)</td>
+            </tr>
+            <tr style="background:#f0fdf4;">
+                <td><code>resolved_at</code> ⭐</td>
+                <td>TIMESTAMP</td>
+                <td>-</td>
+                <td><strong>ฟีเจอร์ 3:</strong> วัน-เวลาที่ดำเนินการซ่อมเสร็จสิ้น (ปิดงาน)</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <div class="page-break"></div>
+    <!-- ================= PAGE 4 ================= -->
+
+    <h2 class="section-title">⚙️ 5. เจาะลึกการทำงานของ Laravel Framework ในโครงงานนี้</h2>
+    <div class="card card-highlight">
+        <p><strong>สถาปัตยกรรม MVC ในงานนี้:</strong> <strong>Model</strong> ([Ticket.php](file:///c:/Users/camer/Downloads/project035_022/app/Models/Ticket.php)) ติดต่อกับ MySQL ผ่าน Eloquent ORM, <strong>View</strong> (Blade) จัดการส่วนแสดงผล, และ <strong>Controller</strong> ([TicketController](file:///c:/Users/camer/Downloads/project035_022/app/Http/Controllers/TicketController.php), [AdminTicketController](file:///c:/Users/camer/Downloads/project035_022/app/Http/Controllers/AdminTicketController.php)) ควบคุมตรรกะทั้งหมด</p>
+    </div>
+
+    <h3 class="subsection-title">🔄 5.1 วงจรการทำงานของ Laravel (Request Lifecycle)</h3>
+    <div class="grid-2">
+        <div class="lifecycle-box">
+            <div class="lifecycle-title"><span class="step-num">1</span> เบราว์เซอร์ส่ง HTTP Request</div>
+            <div class="lifecycle-desc">ผู้ใช้กดส่งฟอร์มแจ้งซ่อม <code>POST /tickets</code> หรือเข้าดูหน้า Dashboard <code>GET /admin/dashboard</code></div>
+        </div>
+        <div class="lifecycle-box">
+            <div class="lifecycle-title"><span class="step-num">2</span> Routing & Middleware ตรวจสอบ</div>
+            <div class="lifecycle-desc">ตรวจสอบ URL จาก <code>routes/web.php</code>, ตรวจสอบ <code>@csrf</code> และสิทธิ์ล็อกอิน <code>auth</code></div>
+        </div>
+        <div class="lifecycle-box">
+            <div class="lifecycle-title"><span class="step-num">3</span> Controller ทำการ Validation</div>
+            <div class="lifecycle-desc">ตรวจสอบไฟล์ภาพไม่เกิน 2MB, บันทึกลง Storage, และสุ่มสร้างรหัส Ticket ID</div>
+        </div>
+        <div class="lifecycle-box">
+            <div class="lifecycle-title"><span class="step-num">4</span> Eloquent ORM บันทึกลง MySQL</div>
+            <div class="lifecycle-desc">ส่งคำสั่ง Insert/Select ไปยังฐานข้อมูล MySQL แบบป้องกัน SQL Injection 100%</div>
+        </div>
+    </div>
+
+    <h2 class="section-title">🎤 6. สคริปต์แนวทางการพูดนำเสนอหน้าห้อง (Speaker Script)</h2>
+
+    <div class="script-box">
+        <p style="margin: 0 0 3px 0;"><strong>🎙️ 1. ช่วงเกริ่นนำ & โครงสร้างระบบ (2 นาที):</strong></p>
+        <em>"กราบเรียนอาจารย์และเพื่อนๆ ทุกคนครับ วันนี้ขอนำเสนอโครงงาน <strong>'ระบบแจ้งซ่อม IT (IT Helpdesk System)'</strong> พัฒนาโดยใช้ <strong>Laravel Framework ร่วมกับฐานข้อมูล MySQL</strong> ครับ... ระบบนี้แบ่งการทำงานออกเป็น 3 ส่วนชัดเจนคือ ส่วนผู้ใช้ทั่วไปที่แจ้งซ่อมได้สะดวกรวดเร็วโดยไม่ต้องล็อกอิน, ส่วนเจ้าหน้าที่ IT ที่มีแดชบอร์ดจัดคิวงานอย่างปลอดภัย, และส่วนเชื่อมต่อข้อมูลผ่านรหัส Ticket ID และหน้าติดตามงานครับ"</em>
+    </div>
+
+    <div class="script-box">
+        <p style="margin: 0 0 3px 0;"><strong>🎙️ 2. ช่วงอธิบายฐานข้อมูล MySQL & 3 ฟีเจอร์ใหม่ (2.5 นาที):</strong></p>
+        <em>"ในส่วนของฐานข้อมูล <strong>MySQL</strong> เราออกแบบ 2 ตารางหลักคือ <code>users</code> และ <code>tickets</code> เชื่อมโยงกันด้วย Foreign Key ครับ โดยเราพัฒนาต่อยอด 3 ฟีเจอร์สำคัญลงในฐานข้อมูล ได้แก่:<br>
+        1. <strong>ฟิลด์ <code>image_path</code></strong> สำหรับแนบรูปถ่ายหลักฐานปัญหา ช่วยให้ช่างเตรียมอะไหล่ได้ทันที<br>
+        2. <strong>ฟิลด์ <code>priority</code> และ <code>category</code></strong> พร้อมระบบ Index ใน MySQL ช่วยให้ Filter เคสด่วนที่สุด (Urgent) มาแสดงบนสุดได้อย่างรวดเร็ว<br>
+        3. <strong>ฟิลด์ <code>admin_notes</code> และ <code>resolved_at</code></strong> ให้ช่างพิมพ์บันทึกวิธีซ่อม และผู้ใช้สามารถดูไทม์ไลน์สถานะแบบ Real-time ครับ"</em>
+    </div>
+
+    <h2 class="section-title">💡 7. แนวทางเตรียมตอบคำถามอาจารย์ (Anticipated Q&A)</h2>
+
+    <div class="qa-box">
+        <div class="qa-question">❓ ถาม: ทำไมใน MySQL ถึงเลือกใช้ ENUM กับฟิลด์ status, priority และ category?</div>
+        <div class="qa-answer"><strong>ตอบ:</strong> เพราะข้อมูลเหล่านี้มีค่าที่แน่นอนและจำกัด (Fixed Set) การใช้ ENUM ใน MySQL ช่วยประหยัดพื้นที่จัดเก็บ ป้องกันการกรอกข้อมูลผิดพลาด และทำงานร่วมกับ Eloquent Query ได้อย่างรวดเร็วมากครับ</div>
+    </div>
+
+    <div class="qa-box">
+        <div class="qa-question">❓ ถาม: หากเปิดใช้กับ XAMPP ต้องทำอย่างไรบ้างในการรันระบบ?</div>
+        <div class="qa-answer"><strong>ตอบ:</strong> เปิดโปรแกรม XAMPP Control Panel กดปุ่ม Start ที่ MySQL จากนั้นเข้า <code>http://localhost/phpmyadmin</code> แล้วกด Import ไฟล์ <code>database/it_helpdesk.sql</code> ก็จะได้ฐานข้อมูลพร้อมตารางและข้อมูลจำลองครบถ้วน จากนั้นสั่งรัน <code>php artisan serve</code> ก็พร้อมใช้งานได้ทันทีครับ</div>
+    </div>
+
+</body>
+</html>
